@@ -80,7 +80,7 @@ Given dataset contains monthly observation of each employee. For conducting surv
   9. Total Business Value (Continous): Average business value
   10. Median_quarterly_rating (Ordinal) : Median quarterly rating.
 
-Below `python` code is used to generate target dataset.
+Below `python` code is used to generate feature dataset.
 
 ```
 #####################################################################################
