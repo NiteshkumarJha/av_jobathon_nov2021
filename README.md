@@ -266,8 +266,8 @@ output_df_waft.to_csv("/content/drive/MyDrive/Data Science/survival_analysis/out
 
 Detail notebook can be found at below link for both models along with exploratory data analysis.
 
- + (Cox Proptional Hazard)[https://github.com/NiteshkumarJha/av_jobathon_nov2021/blob/main/code/av_jobathon_nov2021_v3.ipynb]
- + (Weibull Accerlated Failure time model)[https://github.com/NiteshkumarJha/av_jobathon_nov2021/blob/main/code/av_jobathon_nov2021_v2.ipynb]
+ + [Cox Proptional Hazard](https://github.com/NiteshkumarJha/av_jobathon_nov2021/blob/main/code/av_jobathon_nov2021_v3.ipynb)
+ + [Weibull Accerlated Failure time model](https://github.com/NiteshkumarJha/av_jobathon_nov2021/blob/main/code/av_jobathon_nov2021_v2.ipynb)
 
 *****
 Some of models did not get explored due to limited amount of time as well as these are little bit of advanced and require some hands-on knowleadge on handling of another package `scikit-survival`, `Pysurvival` and others.
