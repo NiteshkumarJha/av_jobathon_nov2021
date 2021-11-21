@@ -177,8 +177,8 @@ Each model has been trained on train dataset and cross validated on validation d
 
 The **concordance index** or **C-index** is a generalization of the area under the ROC curve (AUC) that can take into account censored data. It represents the global assessment of the model discrimination power: this is the model’s ability to correctly provide a reliable ranking of the survival times based on the individual risk scores. Similarly to the AUC, C-index = 1 corresponds to the best model prediction, and C-index = 0.5 represents a random prediction. Below is the peformance of each models:
 
-|Model Name|C-index(val_concordance_index)| Score | Private Score | Public Leaderboard | Private Leaderboard |
-|:--------:|:----------------------------:|:-----:|:-------------:|:------------------:|:-------------------:|
+|Model Name|C-index(val_concordance_index)| Score | Private Score | Public Leaderboard | Private Leaderboard | 
+|:--------:|:----------------------------:|:-----:|:-------------:|:------------------:|:-------------------:| 
 |Cox Proptional Hazard	| 0.84 | 0.70387630275938 | 0.719531378271163 | | |
 |Weibull Accerlated Failure time| 0.85 | 0.714445290682914 | 0.705056179775281 | 39 | 58 |
 |Log Logistic Accerlated Failure time| 0.83 | 0.696113782051282 | 0.71388022017658| | |
@@ -264,6 +264,12 @@ output_df_waft.to_csv("/content/drive/MyDrive/Data Science/survival_analysis/out
                       index = False)
 ```
 
+Detail notebook can be found at below link for both models along with exploratory data analysis.
+
+ + (Cox Proptional Hazard)[https://github.com/NiteshkumarJha/av_jobathon_nov2021/blob/main/code/av_jobathon_nov2021_v3.ipynb]
+ + (Weibull Accerlated Failure time model)[https://github.com/NiteshkumarJha/av_jobathon_nov2021/blob/main/code/av_jobathon_nov2021_v2.ipynb]
+
+*****
 Some of models did not get explored due to limited amount of time as well as these are little bit of advanced and require some hands-on knowleadge on handling of another package `scikit-survival`, `Pysurvival` and others.
 
  **Non-linear models**
@@ -275,7 +281,7 @@ Some of models did not get explored due to limited amount of time as well as the
    + Conditional Survival Forest model `Pysurvival`
    + Linear Multi-Task Logistic Regression `Pysurvival`
    + Neural Multi-Task Logistic Regression `Pysurvival`
-
+*****
 
 ## Next steps
 
