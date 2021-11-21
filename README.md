@@ -1,12 +1,64 @@
 # Analytics vidhya JOB-A-THON - Nov 2021
 
 ## Introduction
-The objective of this JOB-A-THON is to predict which employee is most likely to quit in next 6 months based on employee's details and its monthly performance features. Initial dataset contains 
+The objective of this JOB-A-THON is to predict which employee is most likely to quit in next 6 months based on employee's details and its monthly performance features. Initial dataset contains 19,104 rows and 13 columns and task was to predict survival for 741 employee present in test dataset. This problem can be addressed by survival analysis based on particular use case and datasets available. To solve this, below steps has been adopted:
+
+ 1. **Initial EDA :** Explore initial dataset and decide data preprocessing and modeling strategy.
+ 2. **Data preprocessing :** Prepare data in specific format for performing survival analysis.
+ 3. **EDA :** Peform Exploratory data analysis to understand relationship between target and features.
+ 4. **Modeling :** Explore various models and identify best model.
+ 5. **Prediciton :** Create prediction for test data and prepare submission file.
+
 ## Data preprocessing
 
-New features has been generated based on Date features. Details are given in next section.
+Survival analysis require data in particular format. Below steps are peformed to create target and features during this analysis:
 
-## Target & Feature information
+### Target variable
+
+Two target variable has been created :
+
+ + **time** : Employee stay time(in months). 
+ + **event** : Whether employee left or not. 
+
+Since data is only given till Dec'2017, we can conside this as an example of censored dataset, mainly right censored dataset where employee may have left after study period.
+
+Below python code is used to generate target dataset.
+
+```
+#####################################################################################
+#                          Creating target set                                      #
+#####################################################################################
+
+###### changing data type for date variables
+train['MMM-YY'] = pd.to_datetime(train['MMM-YY'])
+train['Dateofjoining'] = pd.to_datetime(train['Dateofjoining'])
+train['LastWorkingDate'] = pd.to_datetime(train['LastWorkingDate'])
+
+###### creating target variable for survival analysis
+# date of joining table
+date_of_joining = train[["Emp_ID", "Dateofjoining"]].drop_duplicates()
+# last working date table
+last_working_date = train[["Emp_ID", "LastWorkingDate"]].dropna().drop_duplicates()
+
+##### target table
+target = pd.merge(date_of_joining, last_working_date, on = "Emp_ID", how = "left")
+
+# creating event column
+target["event"] = np.where(target["LastWorkingDate"].isnull()==True, False, True)
+
+# creating time for event column
+target['time'] = \
+np.where(target["LastWorkingDate"].isnull()==True, (pd.to_datetime("2017-12-31") - target['Dateofjoining']), 
+         (target['LastWorkingDate'] - target['Dateofjoining']))
+
+target['time'] = target['time'] / np.timedelta64(1, 'M')
+target['time'] = target['time'].round(0).astype(int)
+
+# keeping only revalant column
+target = target[["Emp_ID", "time", "event"]]
+
+```
+
 Below are the feature information and respective transformation used during modeling:
 
  + Target : Sales (Since sales variable is skewed, **sqrt** transformation is performed for training purpose.)
